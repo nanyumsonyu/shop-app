@@ -129,13 +129,14 @@ app.get("/500", errorController.get500);
 
 app.use(errorController.get404);
 
-app.use((error, req, res, next) => {
-  // res.status(error.httpStatusCode).render(...);
-  // res.redirect('/500');
+aapp.use((error, req, res, next) => {
+  // Add a console.log here so you can finally see what the REAL original error is!
+  console.log("Original Error:", error); 
+
   res.status(500).render("500", {
     pageTitle: "Error!",
     path: "/500",
-    isAuthenticated: req.session.isLoggedIn,
+    isAuthenticated: req.session ? req.session.isLoggedIn : false, // ✅ Safe check!
   });
 });
 
