@@ -129,7 +129,7 @@ app.get("/500", errorController.get500);
 
 app.use(errorController.get404);
 
-aapp.use((error, req, res, next) => {
+app.use((error, req, res, next) => {
   // Add a console.log here so you can finally see what the REAL original error is!
   console.log("Original Error:", error); 
 
