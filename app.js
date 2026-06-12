@@ -23,6 +23,7 @@ const User = require("./models/user");
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.hb0le7s.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?appName=Cluster0`
 
 const app = express();
+app.set('trust proxy', 1); // <--- ADD THIS LINE
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions",
@@ -81,6 +82,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: store,
+    cookie: {
+      secure: false // Set to false temporarily to make sure sessions work!
+    }
   }),
 );
 
