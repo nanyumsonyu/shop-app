@@ -77,7 +77,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(
   session({
-    secret: "my secret",
+    secret: process.env.SESSION_SECRET || 'local_fallback_secret',
     resave: false,
     saveUninitialized: false,
     store: store,
