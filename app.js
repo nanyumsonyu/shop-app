@@ -23,6 +23,10 @@ const User = require("./models/user");
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.hb0le7s.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?appName=Cluster0`
 
 const app = express();
+const dir = './images';
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
 app.set('trust proxy', 1); // <--- ADD THIS LINE
 const store = new MongoDBStore({
   uri: MONGODB_URI,
