@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator/check');
 
 const User = require('../models/user');
 
-const sendGridApiKey = 'SENDGRID_API_KEY'
+const sendGridApiKey = 'process.env.SENDGRID_API_KEY';
 const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
